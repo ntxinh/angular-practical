@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col1">
+        <h3>Todo List</h3>
+      </div>
+      <div class="col2">
+        <!-- Create New  -->
+        <button type="button" class="btn btn-primary pull-right" (click)="openModal(template)">
+          Create New
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Template of New Form -->
+    <ng-template #template>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Create New</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="name">Content</label>
+            <input type="text" class="form-control" name="content" [(ngModel)]="content">
+          </div>
+          <button type="button" class="btn btn-default" *ngIf="!todo._id" (click)="createTodo(content);">Create</button>
+          <button type="button" class="btn btn-default" *ngIf="todo._id" (click)="updateTodo(content);">Update</button>
+        </form>
+      </div>
+    </ng-template>
+
+    <!-- List of All  -->
+    <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Content</th>
+          <th class="text-center">Done</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos; let i = index">
+          <td>{{ i+1 }}</td>
+          <td>{{ todo.content }}</td>
+          <td>{{ todo.done }}</td>
+          <td>
+            <!-- Show Edit Form  -->
+            <button class="btn btn-info" (click)="showEditTodoForm(todo, template)">
+              <i class="fa fa-edit"></i>
+            </button>
+            <!-- Check  -->
+            <button class="btn btn-success" (click)="checkTodo(todo._id)">
+              <i class="fa fa-check"></i>
+            </button>
+            <!-- Remove  -->
+            <button class="btn btn-danger" (click)="removeTodo(todo._id)">
+              <i class="fa fa-minus"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
