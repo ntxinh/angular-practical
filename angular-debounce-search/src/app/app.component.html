@@ -1,0 +1,43 @@
+<div class="container" style="text-align:center">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1>Angular 8 Search using Debounce in RXJS 6.X.X</h1>
+      <input type="text" #searchInput class="form-control" placeholder="Type any Github user name" />
+
+    </div>
+  </div>
+  <div class="row" *ngIf="isSearching">
+    <div class="col-12 text-center">
+
+      <h4>Searching ... </h4>
+
+    </div>
+  </div>
+  <div class="row">
+    <ng-container *ngIf="apiResponse['Response'] == 'False'; else elseTemplate">
+
+      <div class="col-12 text-center">
+        <div class="alert alert-danger" role="alert">
+          {{apiResponse['Error']}}
+
+        </div>
+      </div>
+
+    </ng-container>
+    <ng-template #elseTemplate>
+
+
+      <div class="col-3" *ngFor="let item of apiResponse.items">
+
+        <div class="card" style="margin:5px;">
+          <img class="card-img-top" width="50" height="50" src="{{item.avatar_url}}">
+          <div class="card-body">
+            <h5 class="card-title">{{item.login}}</h5>
+            <a [href]="item.html_url" class="card-text">URL: {{item.html_url}}</a>
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+  </div>
+</div>
