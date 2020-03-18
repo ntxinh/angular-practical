@@ -1,3 +1,3 @@
 # References
 
-- https://github.com/nguyentrucxinh/angular-practices/tree/master/communicating-between-components-with-observable-and-subject
+- https://jasonwatmore.com/post/2019/02/07/angular-7-communicating-between-components-with-observable-subject
