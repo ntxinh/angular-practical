@@ -1,0 +1,26 @@
+<nav>
+  <div>
+    <a routerLink="/dashboard">Dashboard</a>
+  </div>
+  <button class="btn btn-danger" (click)="logout()">Logout</button>
+</nav>
+
+<div class="container" style="margin-top: 20px;">
+  <h2>Dashboard</h2>
+
+  <div *ngIf="user" style="margin-bottom: 20px;">
+    <p><strong>Welcome,</strong> {{ user.name || user.email }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>User ID:</strong> {{ user.id }}</p>
+  </div>
+
+  <button class="btn btn-primary" (click)="fetchProtectedData()" [disabled]="loading">
+    {{ loading ? 'Loading...' : 'Fetch Protected Data' }}
+  </button>
+
+  <div *ngIf="protectedData" class="success" style="margin-top: 15px;">
+    <strong>Response:</strong> {{ protectedData }}
+  </div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+</div>
